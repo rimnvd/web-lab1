@@ -7,7 +7,8 @@ function checkX() {
     if (xVal === "") {
         showMessage("Значение X не введено")
         return false;
-    } else if (xVal.match(/^[+-]0$/) || xVal.match(/^[+-]0\.0+$/) || !xVal.match(/^-?[0-9]+\.[0-9]+$/) && !xVal.match(/^-?[0-9]+$/)) {
+    } else if (xVal.match(/^[+-]0$/) || xVal.match(/^[+-]0\.0+$/) || xVal.match(/^[+-]?0+$/) ||
+        !xVal.match(/^-?[0-9]+\.[0-9]+$/) && !xVal.match(/^-?[0-9]+$/)) {
         showMessage("Значение X должно быть числом");
         return false;
     }
