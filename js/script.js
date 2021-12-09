@@ -104,7 +104,7 @@ $('#main-form').on('submit', function (event) {
                 $('#result-table').append(row);
             },
             error: function () {
-                alert("глупая киса")
+                alert("Something went wrong. Please, reload the page and try again.");
             }
         });
     }
