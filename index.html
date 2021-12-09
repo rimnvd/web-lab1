@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>lab1</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: rgba(171,255,184, 0.9);
+        }
+
+        .header {
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+            font-size: 30px;
+            height: 35px;
+            color: black;
+            width: 100%;
+            background: #ba6fc7;
+            text-align: center;
+            border: 2px rgba(0, 0, 0, 0.7) solid;
+            text-shadow: white 0 -2px 0;
+        }
+
+        .header > p {
+            display: inline;
+            margin-right: 100px;
+        }
+
+        #graph {
+            margin-left: 5%;
+            margin-top: 3%;
+            font-weight: bold;
+            font-family: "Courier New", monospace;
+            font-size: 20px
+        }
+
+        #x-text {
+            border: 2px solid;
+            height: 50px;
+            text-align: center;
+            margin: 0 1%;
+
+        }
+
+        #parameter {
+            float: left;
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+            margin-top: 5%;
+        }
+
+        .elements input:hover {
+            box-shadow: 0 0 5px 2px #ba6fc7;
+        }
+
+
+        input[type="button"].active {
+            background-color: #ba6fc7;
+        }
+
+        TABLE {
+            margin-top: -10%;
+            font-family: "Courier New", monospace;
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        th {
+            border: 2px solid;
+        }
+
+        td {
+            text-align: center;
+            border: 2px solid;
+        }
+
+        input[type="button"] {
+            font-weight: bold;
+
+        }
+
+        .elements input {
+            font-weight: bold;
+        }
+
+        #results {
+            margin-top: 12%;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="header">
+        <p>Лунева Арина Алексеевна</p>
+        <p>Группа P3231</p>
+        <p>Вариант 31012</p>
+    </div>
+</header>
+
+<form id="main-form" method="post">
+    <svg height="400" width="400" xmlns="http://www.w3.org/2000/svg" id="graph">
+        <line stroke="black" x1="0" x2="400" y1="200" y2="200"></line>
+        <line stroke="black" x1="200" x2="200" y1="0" y2="400"></line>
+        <polygon fill="black" stroke="black" points="200,0 195,10 205,10"></polygon>
+        <polygon fill="black" stroke="black" points="400,200 390,195 390,205"></polygon>
+        <polygon fill="#ba6fc7" points="200,200, 200,50  125,50 125,200" stroke="black"></polygon>
+        <polygon fill="#ba6fc7" points="275,200 200,350 200,200" stroke="black"></polygon>
+        <path d="M 200,125 A 75,75  90 0,1 275,200 L 200,200 Z" fill="#ba6fc7" stroke="black"></path>
+        <circle id="dot" fill="#ba6fc7" color="blue" r="0" cx="0" cy="0"/>
+        <text fill="black" x="40" y="190">-R</text>
+        <text fill="black" x="110" y="190">-R/2</text>
+        <text fill="black" x="265" y="190">R/2</text>
+        <text fill="black" x="345" y="190">R</text>
+        <text fill="black" x="210" y="54">R</text>
+        <text fill="black" x="210" y="128">R/2</text>
+        <text fill="black" x="210" y="278">-R/2</text>
+        <text fill="black" x="210" y="353">-R</text>
+        <text fill="black" x="387" y="190">X</text>
+        <text fill="black" x="210" y="10">Y</text>
+        <line stroke="black" x1="50" x2="50" y1="195" y2="205" stroke-width="2"></line>
+        <line stroke="black" x1="125" x2="125" y1="195" y2="205" stroke-width="2"></line>
+        <line stroke="black" x1="275" x2="275" y1="195" y2="205" stroke-width="2"></line>
+        <line stroke="black" x1="350" x2="350" y1="195" y2="205" stroke-width="2"></line>
+        <line stroke="black" x1="195" x2="205" y1="50" y2="50" stroke-width="2"></line>
+        <line stroke="black" x1="195" x2="205" y1="125" y2="125" stroke-width="2"></line>
+        <line stroke="black" x1="195" x2="205" y1="275" y2="275" stroke-width="2"></line>
+        <line stroke="black" x1="195" x2="205" y1="350" y2="350" stroke-width="2"></line>
+    </svg>
+    <div id="parameter">
+        <div id="x" class=elements>
+            Значение X:
+            <input type="text" size=24 name="X" placeholder="Значение из интервала (-5,5)" id="x-text" maxlength="17" autocomplete="off">
+        </div>
+        <p>        <div id="y" class="elements">
+            Значение Y:
+            <input type="checkbox" name="Y" value="-2" class="chb" id="choice">
+            -2
+            <input type="checkbox" name="Y" value="-1.5" class="chb">
+            -1.5
+            <input type="checkbox" name="Y" value="-1" class="chb">
+            -1
+            <input type="checkbox" name="Y" value="-0.5" class="chb">
+            -0.5
+            <input type="checkbox" name="Y" value="0" class="chb">
+            0
+            <input type="checkbox" name="Y" value="0.5" class="chb">
+            0.5
+            <input type="checkbox" name="Y" value="1" class="chb">
+            1
+            <input type="checkbox" name="Y" value="1.5" class="chb">
+            1.5
+            <input type="checkbox" name="Y" value="2" class="chb">
+            2
+        </div>
+        <p>
+        <div id="r" class="elements">
+            Значение R:
+            <input type="button" name="R" value="1">
+            <input type="button" name="R" value="2">
+            <input type="button" name="R" value="3">
+            <input type="button" name="R" value="4">
+            <input type="button" name="R" value="5">
+        </div>
+        <p>
+        <div class="elements">
+            <input type="submit">
+            <input type="reset" id="reset">
+            <input type="button" value="Очистить таблицу" onclick="clearTable()">
+        </div>
+        <p>
+        <div id="errors"></div>
+    </div>
+    <div id="results">
+        <table id="result-table">
+            <tr>
+                <th>X</th>
+                <th>Y</th>
+                <th>R</th>
+                <th>Текущее время</th>
+                <th>Время работы скрипта</th>
+                <th>Результат</th>
+            </tr>
+        </table>
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/checkboxSwitch.js"></script>
+<script src="js/buttonSwitch.js"></script>
+</body>
+</html>
