@@ -7,7 +7,7 @@ function checkX() {
     if (xVal === "") {
         showMessage("Значение X не введено")
         return false;
-    } else if (xVal.match(/^[+-]0$/) || xVal.match(/^[+-]0\.0+$/) || xVal.match(/^[+-]?0+$/) ||
+    } else if (xVal.match(/^[+-]0$/) || xVal.match(/^[+-]0\.0+$/) || xVal.match(/^[+-]?00+$/) || xVal.match(/^[+-]?00+\.[0-9]+$/) ||
         !xVal.match(/^-?[0-9]+\.[0-9]+$/) && !xVal.match(/^-?[0-9]+$/)) {
         showMessage("Значение X должно быть числом");
         return false;
@@ -90,23 +90,24 @@ $('#main-form').on('submit', function (event) {
         $.ajax({
             url: "main.php",
             type: 'POST',
-            //dataType: 'json',
+            dataType: 'json',
             data: "X=" + x +"&Y=" + y + "&R=" + r,
             success: function (jsonData) {
-                let parseData = JSON.parse(jsonData);
+                if (jsonData.error) {
+                    clearError();
+                    showMessage("Получены неверные данные");
+                    return;
+                }
                 let row = '<tr>';
-                row += '<td>' + parseData.x +'</td>';
-                row += '<td>' + parseData.y +'</td>';
-                row += '<td>' + parseData.r +'</td>';
-                row += '<td>'+ parseData.current + '</td>';
-                row += '<td>' + parseData.execution + '</td>';
-                row += '<td>' + parseData.result +'</td>';
+                row += '<td>' + jsonData.x +'</td>';
+                row += '<td>' + jsonData.y +'</td>';
+                row += '<td>' + jsonData.r +'</td>';
+                row += '<td>'+ jsonData.current + '</td>';
+                row += '<td>' + jsonData.execution + '</td>';
+                row += '<td>' + jsonData.result +'</td>';
                 row += '</tr>';
                 $('#result-table').append(row);
             },
-            error: function () {
-                alert("Something went wrong. Please, reload the page and try again.");
-            }
         });
     }
 })
